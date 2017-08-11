@@ -1,0 +1,62 @@
+<svg width="100%" height="100%" viewBox="0 0 600 300"
+     xmlns="http://www.w3.org/2000/svg"
+     xmlns:xlink="http://www.w3.org/1999/xlink">
+
+  <desc>
+    3 Cup Shuffle
+    
+    SMIL animation of 3 cups with a hidden object
+    
+    Jay Nick
+    STEAMcoded.org
+  </desc>
+  
+  <defs>
+    <g id="cup">
+      <g>
+        <animateTransform id="a3" attributeName="transform" type="translate" values="0,0;0,-30;0,0" begin="a2.end+1s" dur="3.5s" fill="freeze" />
+        <path d="M-20,-30l40,0l10,60l-60,0zM-25,0l50,0M-22.5,-15l45,0M-27.5,15l55,0" style="stroke:silver">
+          <animateTransform id="a1" attributeName="transform" type="translate" values="0,0;0,-30;0,0" begin="0s" dur="3.5s" fill="freeze" />
+        </path>
+      </g>
+    </g>
+    <g id="smiley">
+      <circle cx="0" cy="15" r="13" style="fill:yellow;stroke:black;stroke-width:2px;" />
+      <circle cx="-5" cy="12" r="2" style="fill:black;" />
+      <circle cx="5" cy="12" r="2" style="fill:black;" />
+      <path d="M-6,18Q0,25,6,18" style="fill:none;stroke:black;stroke-width:1.5px;" />
+    </g>
+
+    <path id="p1" d="M100,150q75,-200,150,0q125,200,250,0q-75,-200,-150,0q-75,200,-250,0" />
+    <path id="p2" d="M300,150q100,-200,200,0q-100,-200,-200,0t-200,0q100,-200,200,0" />
+    <path id="p3" d="M500,150q-75,200,-150,0q-125,-200,-250,0q75,-200,150,0q125,-200,250,0" />
+  </defs>
+  
+  <style type="text/css"><![CDATA[
+    .show {visibility:visible;}
+    .hide {visibility:hidden;}
+    
+    .c1 {visibility:visible;}
+    .c2 {visibility:hidden;}
+  ]]>
+  </style>
+
+  <g transform="translate(100,150)" class="c1">
+    <animate id="a4" attributeName="class" values="show;hide;show;hide;show" begin="0s" dur="22.5s" calcMode="discrete" fill="freeze" />
+    <use x="400" xlink:href="#smiley">
+      <animate attributeName="x" values="0;400;0;" begin="a1.end" dur="29.5s" calcMode="discrete" fill="freeze" />
+    </use>
+    <use xlink:href="#cup" style="fill:darkred;"/>
+    <use x="200" xlink:href="#cup" style="fill:darkred;"/>
+    <use x="400" xlink:href="#cup" style="fill:darkred;"/>
+  </g>
+  
+  
+  <g class="c2">
+    <animate attributeName="class" values="hide;show;hide;show;hide;" begin="0s;" dur="22.5s" calcMode="discrete" />
+    <use xlink:href="#cup" style="fill:darkred;"><animateMotion id="a2" dur="1s" begin="4.5s;13.5s;" repeatCount="4.5" fill="freeze"><mpath xlink:href="#p1" /></animateMotion></use>
+    <use xlink:href="#cup" style="fill:darkred;"><animateMotion dur="1s" begin="4.5s;13.5s;" repeatCount="4.5" fill="freeze"><mpath xlink:href="#p2" /></animateMotion></use>
+    <use xlink:href="#cup" style="fill:darkred;"><animateMotion dur="1s" begin="4.5s;13.5s;" repeatCount="4.5" fill="freeze"><mpath xlink:href="#p3" /></animateMotion></use>
+  </g>
+
+</svg>
