@@ -1,0 +1,178 @@
+<svg width="100%" height="100%" viewBox="0 0 600 600"
+    xmlns="http://www.w3.org/2000/svg"
+    xmlns:xlink="http://www.w3.org/1999/xlink">
+    
+  <desc><![CDATA[
+    Ringed Clock
+    
+    Jay Nick
+    steamcoded.org
+  ]]>
+  </desc>
+
+  <script type="application/x-javascript"><![CDATA[
+    var RingClock = new function()
+    {
+      window.addEventListener("load",init);
+      var frame = 0;
+      
+      function init()
+      {
+        setClock();
+      }
+      
+      function setClock()
+      {
+        var dt = new Date();
+        
+        var hours = dt.getHours() % 12;
+        var min = dt.getMinutes();
+        var sec = dt.getSeconds();
+        
+        var node = document.getElementById("hours");
+        var cir = 2 * Math.PI * 220;
+        var dash = cir * (hours)/12;
+        var gap = cir - dash;
+        if(dash==0) dash=0.1;
+        node.setAttribute("style","stroke-dasharray:"+dash+","+gap);
+
+        node = document.getElementById("minutes");
+        cir = 2 * Math.PI * 250;
+        dash = cir * (min)/60;
+        gap = cir - dash;
+        if(dash==0) dash=0.1;
+        node.setAttribute("style","stroke-dasharray:"+dash+","+gap);
+
+        node = document.getElementById("seconds");
+        cir = 2 * Math.PI * 280;
+        dash = cir * sec/60;
+        gap = cir - dash;
+        if(dash==0) dash=0.1;
+        node.setAttribute("style","stroke-dasharray:"+dash+","+gap);
+        
+        node = document.getElementById("hhand");
+        var deg = 30*(hours + min/60);
+        node.setAttribute("transform","rotate("+deg+",300,300)");
+
+        node = document.getElementById("mhand");
+        deg = 6*(min + sec/60);
+        node.setAttribute("transform","rotate("+deg+",300,300)");
+        
+        node = document.getElementById("shand");
+        deg = 6*sec;
+        node.setAttribute("transform","rotate("+deg+",300,300)");
+                
+        setTimeout(setClock,1000);
+      }
+    }();
+  ]]>
+  </script>
+  
+  <style type="text/css"><![CDATA[
+    @import url('https://fonts.googleapis.com/css?family=Lobster+Two:700');
+
+    #hours {stroke:cyan;}
+    #hhand {fill:cyan;stroke:purple;}
+    #minutes {stroke:lime;}
+    #mhand {fill:lime;stroke:purple;}
+    #seconds {stroke:magenta;}
+    #shand {fill:magenta;stroke:purple;}
+    .tics {stroke:purple;stroke-width:2px;}
+    .dots {fill:purple;stroke:none;}
+    text {fill:cyan;stroke:purple;stroke-width:0.75px;}
+    text {font-family:'Lobster Two',Arial;font-size:40px;font-weight:700;text-anchor:middle;}
+  ]]>
+  </style>
+  
+  <defs>
+    <radialGradient id="rg1">
+      <stop offset="0%" stop-color="magenta" />
+      <stop offset="100%" stop-color="purple" />
+    </radialGradient>
+  </defs>
+
+  <circle cx="300" cy="300" r="295" style="fill:purple;stroke:#ccc;stroke-width:4px;" />
+  <circle cx="300" cy="300" r="265" style="fill:none;stroke:#ccc;stroke-width:4px;" />
+  <circle cx="300" cy="300" r="235" style="fill:none;stroke:#ccc;stroke-width:4px;" />
+  <circle cx="300" cy="300" r="205" style="fill:url(#rg1);;stroke:#ccc;stroke-width:4px;" />
+  
+  <g style="fill:none;stroke-width:20px;stroke-linecap:round;" transform="rotate(-90,300,300)">
+    <circle id="hours" cx="300" cy="300" r="220" style="stroke-dasharray:0.1,1759.3;" />
+    <circle id="minutes" cx="300" cy="300" r="250" style="stroke-dasharray:0.1,1759.3;" />
+    <circle id="seconds" cx="300" cy="300" r="280" style="stroke-dasharray:0.1,1759.3;" />
+  </g>
+  
+  <g class="dots">
+    <circle class="round" cx="300" cy="80" r="6" />
+    <circle class="round" cx="300" cy="80" r="6" transform="rotate(30,300,300)" />
+    <circle class="round" cx="300" cy="80" r="6" transform="rotate(60,300,300)" />
+    <circle class="round" cx="300" cy="80" r="6" transform="rotate(90,300,300)" />
+    <circle class="round" cx="300" cy="80" r="6" transform="rotate(120,300,300)" />
+    <circle class="round" cx="300" cy="80" r="6" transform="rotate(150,300,300)" />
+    <circle class="round" cx="300" cy="80" r="6" transform="rotate(180,300,300)" />
+    <circle class="round" cx="300" cy="80" r="6" transform="rotate(210,300,300)" />
+    <circle class="round" cx="300" cy="80" r="6" transform="rotate(240,300,300)" />
+    <circle class="round" cx="300" cy="80" r="6" transform="rotate(270,300,300)" />
+    <circle class="round" cx="300" cy="80" r="6" transform="rotate(300,300,300)" />
+    <circle class="round" cx="300" cy="80" r="6" transform="rotate(330,300,300)" />
+  </g>
+  
+  <g id="ts" class="tics">
+    <circle class="dots" cx="300" cy="20" r="6" />
+    <path d="M300,14l0,12" transform="rotate(6,300,300)" />
+    <path d="M300,14l0,12" transform="rotate(12,300,300)" />
+    <path d="M300,14l0,12" transform="rotate(18,300,300)" />
+    <path d="M300,14l0,12" transform="rotate(24,300,300)" />
+  </g>
+  <use xlink:href="#ts" transform="rotate(30,300,300)" />
+  <use xlink:href="#ts" transform="rotate(60,300,300)" />
+  <use xlink:href="#ts" transform="rotate(90,300,300)" />
+  <use xlink:href="#ts" transform="rotate(120,300,300)" />
+  <use xlink:href="#ts" transform="rotate(150,300,300)" />
+  <use xlink:href="#ts" transform="rotate(180,300,300)" />
+  <use xlink:href="#ts" transform="rotate(210,300,300)" />
+  <use xlink:href="#ts" transform="rotate(240,300,300)" />
+  <use xlink:href="#ts" transform="rotate(270,300,300)" />
+  <use xlink:href="#ts" transform="rotate(300,300,300)" />
+  <use xlink:href="#ts" transform="rotate(330,300,300)" />
+  
+  <g id="tm" class="tics">
+    <circle class="dots" cx="300" cy="50" r="6" />
+    <path d="M300,44l0,12" transform="rotate(6,300,300)" />
+    <path d="M300,44l0,12" transform="rotate(12,300,300)" />
+    <path d="M300,44l0,12" transform="rotate(18,300,300)" />
+    <path d="M300,44l0,12" transform="rotate(24,300,300)" />
+  </g>
+  <use xlink:href="#tm" transform="rotate(30,300,300)" />
+  <use xlink:href="#tm" transform="rotate(60,300,300)" />
+  <use xlink:href="#tm" transform="rotate(90,300,300)" />
+  <use xlink:href="#tm" transform="rotate(120,300,300)" />
+  <use xlink:href="#tm" transform="rotate(150,300,300)" />
+  <use xlink:href="#tm" transform="rotate(180,300,300)" />
+  <use xlink:href="#tm" transform="rotate(210,300,300)" />
+  <use xlink:href="#tm" transform="rotate(240,300,300)" />
+  <use xlink:href="#tm" transform="rotate(270,300,300)" />
+  <use xlink:href="#tm" transform="rotate(300,300,300)" />
+  <use xlink:href="#tm" transform="rotate(330,300,300)" />
+
+  <g>  
+    <text x="300" y="130">12</text>
+    <text x="300" y="130" transform="rotate(30,300,300) rotate(-30,300,115)">1</text>
+    <text x="300" y="130" transform="rotate(60,300,300) rotate(-60,300,115)">2</text>
+    <text x="300" y="130" transform="rotate(90,300,300) rotate(-90,300,115)">3</text>
+    <text x="300" y="130" transform="rotate(120,300,300) rotate(-120,300,115)">4</text>
+    <text x="300" y="130" transform="rotate(150,300,300) rotate(-150,300,115)">5</text>
+    <text x="300" y="130" transform="rotate(180,300,300) rotate(-180,300,115)">6</text>
+    <text x="300" y="130" transform="rotate(210,300,300) rotate(-210,300,115)">7</text>
+    <text x="300" y="130" transform="rotate(240,300,300) rotate(-240,300,115)">8</text>
+    <text x="300" y="130" transform="rotate(270,300,300) rotate(-270,300,115)">9</text>
+    <text x="308" y="130" transform="rotate(300,300,300) rotate(-300,300,115)">10</text>
+    <text x="304" y="130" transform="rotate(330,300,300) rotate(-330,300,115)">11</text>
+  </g>
+  
+  <path id="hhand" d="M291,300l9,-130l9,130l-9,40,-9,-40" />
+  <path id="mhand" d="M292,300l8,-150l8,150l-8,50,-8,-50" />
+  <path id="shand" d="M293,300l7,-170l7,170l-7,60,-7,-60" />
+  <circle cx="300" cy="300" r="4" style="fill:url(#rg1);" />
+   
+</svg>
